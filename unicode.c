@@ -59,7 +59,7 @@ unicode_init (Display *dpy, Window window)
 		);
 	for (i = 0; i < NUM_FONTS; i++) {
 		state->font_count[i] = FcCharSetCount(state->fonts[i]->charset);
-		printf("Font count: %d\n",state->font_count[i]);
+		// printf("Font count: %d\n",state->font_count[i]);
 	}
 
 	state->draw = XftDrawCreate(dpy, window, xgwa.visual, cmap); 
