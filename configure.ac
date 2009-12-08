@@ -7,6 +7,71 @@ AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE
 
+###############################################################################
+#
+#       Handle the --with-hackdir option
+#
+###############################################################################
+
+have_hackdir=yes
+with_hackdir_req=unspecified
+AC_ARG_WITH(hackdir,[
+
+Installation options:
+  --with-hackdir=DIR      Where to install the hundreds of demo executables.
+                          Default: PREFIX/libexec/xscreensaver/],
+  [with_hackdir="$withval"; with_hackdir_req="$withval"],[with_hackdir=yes])
+
+if test x"$with_hackdir" = xyes; then
+  HACKDIR='${libexecdir}/xscreensaver'
+elif test x"$with_hackdir" = xno; then
+  HACKDIR='${bindir}'
+else
+  HACKDIR=$with_hackdir
+fi
+
+# canonicalize slashes.
+HACKDIR=`echo "${HACKDIR}" | sed 's@/$@@;s@//*@/@g'`
+
+# Expand HACKDIR as HACKDIR_FULL
+HACKDIR_FULL=`eval eval eval eval eval eval eval eval eval echo $HACKDIR`
+
+###############################################################################
+#
+#       Handle the --with-configdir option
+#       Help for --with-x-app-defaults option added..
+#
+###############################################################################
+
+have_configdir=yes
+with_configdir_req=unspecified
+AC_ARG_WITH(configdir,
+[  --with-configdir=DIR    Where to install the data files that describe each
+                          of the display modes to the GUI.
+                          Default: PREFIX/share/xscreensaver/config/
+],
+  [with_configdir="$withval"; with_configdir_req="$withval"],
+  [with_configdir=yes])
+
+if test x"$with_configdir" = xyes; then
+  HACK_CONF_DIR='${datadir}/xscreensaver/config'
+elif test x"$with_configdir" = xno; then
+  echo "error: must be yes, or a pathname: --with-configdir=$with_configdir"
+  exit 1
+else
+  # there must be a better way than this...
+  if test -z "`echo $with_configdir | sed 's@^/.*@@'`" ; then
+    # absolute path
+    HACK_CONF_DIR=$with_configdir
+  else
+    # relative path
+    HACK_CONF_DIR="\${exec_prefix}$with_configdir"
+  fi
+fi
+
+
+
+
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
