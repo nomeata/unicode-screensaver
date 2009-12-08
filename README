@@ -45,6 +45,7 @@ utils/vroot.h is covered by:
 	Copyright 1991 by Andreas Stolcke
 	Copyright 1990 by Solbourne Computer Inc.
 
-The file unicode-names.h is a generated file, based on the Unicode stardard.
-The license of this data is distributed in the file COPYING.UNICODE.
+The file unicode-names.h is a generated file copied from the gucharmap
+distribution and slightly modified. The data based on the Unicode stardard, the
+license of this data is distributed in the file COPYING.UNICODE.
 
