@@ -3,7 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
 
 CFLAGS = -Wall -pedantic
 
-INCLUDES = -Ihacks -Iutils @XFT_CFLAGS@ @X11_CFLAGS@ @FC_CFLAGS@ @XMU_CFLAGS@ @XT_CFLAGS@
+AM_CPPFLAGS  = -I$(srcdir)/hacks -I$(srcdir)/utils @XFT_CFLAGS@ @X11_CFLAGS@ @FC_CFLAGS@ @XMU_CFLAGS@ @XT_CFLAGS@
 
 bin_PROGRAMS = unicode
 unicode_SOURCES = \
@@ -16,6 +16,19 @@ unicode_SOURCES = \
 	utils/resources.c \
 	utils/usleep.c \
 	hacks/fps.c \
-	hacks/*.h \
-	utils/*.h
+	hacks/fps.h \
+	hacks/fpsI.h \
+	hacks/screenhack.h \
+	hacks/screenhackI.h \
+	utils/colors.h \
+	utils/grabscreen.h \
+	utils/hsv.h \
+	utils/resources.h \
+	utils/usleep.h \
+	utils/utils.h \
+	utils/visual.h \
+	utils/vroot.h \
+	utils/xmu.h \
+	utils/yarandom.h
+
 unicode_LDADD = @XFT_LIBS@ @X11_LIBS@ @FC_LIBS@ @XMU_LIBS@ @XT_LIBS@
