@@ -1,0 +1,49 @@
+unicode-screensaver
+
+© 2006,2009 Joachim Breitner <mail@joachim-breitner.de>
+
+unicode-screensaver is a simple screensaver application that repeatedly
+randomly picks an unicode character and displays it in a very large font
+size together with its unicode code point and the character name.
+
+Installation
+============
+
+The unicode screensaver depends on these libraries:
+ * libx11
+ * libxmu
+ * libxt
+ * libxft
+ * libfontconfig
+
+You need to have the respective developer packages installed to compile
+unicode-screensaver. On Debian and derived distributions, these packages
+are required:
+ libx11-dev libxmu-dev libxt-dev libxft-dev libfontconfig1-dev
+
+You can compile and install the screensaver as usual by running
+ ./configure && make && make install
+
+To make sure that xscreensaver knows about your screen hack, please read
+the man pages for xscreensaver and xscreensaver-demo.
+
+Copyright and Licensing
+=======================
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.  No representations are made about the suitability of this
+software for any purpose.  It is provided "as is" without express or 
+implied warranty.
+
+The files in the directories hacks/ and utils/ are taken from the xscreensaver
+distribution and covered by the following copyrights:
+	Copyright (c) 1992-2008 Jamie Zawinski <jwz@jwz.org>
+utils/vroot.h is covered by:
+	Copyright 1991 by Andreas Stolcke
+	Copyright 1990 by Solbourne Computer Inc.
+
+The file unicode-names.h is a generated file, based on the Unicode stardard.
+

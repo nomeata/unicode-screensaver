@@ -1,4 +1,4 @@
-/* unicode (c) 2006 
+/* unicode (c) 2006,2009
  * Joachim Breitner <mail@joachim-breitner.de>
  *
  * Permission to use, copy, modify, distribute, and sell this software and its
