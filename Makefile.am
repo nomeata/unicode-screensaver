@@ -37,14 +37,15 @@ unicode_SOURCES = \
 unicode_LDADD = @XFT_LIBS@ @X11_LIBS@ @FC_LIBS@ @XMU_LIBS@ @XT_LIBS@
 
 nodist_desktop_DATA = unicode.desktop
-
 unicode.desktop: unicode.desktop.in
 	sed -e 's,[@]hackexecdir[@],$(hackexecdir),g' < $(srcdir)/unicode.desktop.in > unicode.desktop
 
+man_MANS = unicode.1
+unicode.1: unicode.1.in
+	sed -e 's,[@]version[@],@PACKAGE_VERSION@,g' < $(srcdir)/unicode.1.in > unicode.1
+
 dist_hackconf_DATA = unicode.xml
 
-EXTRA_DIST = unicode.desktop.in
+EXTRA_DIST = unicode.desktop.in unicode.1.in
+CLEANFILES = unicode.desktop unicode.1
 
-CLEANFILES = unicode.desktop
-
-man_MANS = unicode.1
