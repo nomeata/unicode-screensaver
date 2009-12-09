@@ -1,4 +1,4 @@
-.TH unicode-screensaver @version@ "" "X Version 11"
+.TH unicode-screensaver 1 "Version @version@" "X Version 11" "unicode-screensaver manual"
 .SH NAME
 unicode - displays unicode characters
 .SH SYNOPSIS
