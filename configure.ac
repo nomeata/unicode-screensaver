@@ -36,6 +36,9 @@ HACKDIR=`echo "${HACKDIR}" | sed 's@/$@@;s@//*@/@g'`
 # Expand HACKDIR as HACKDIR_FULL
 HACKDIR_FULL=`eval eval eval eval eval eval eval eval eval echo $HACKDIR`
 
+AC_SUBST(HACKDIR)
+AC_SUBST(HACKDIR_FULL)
+
 ###############################################################################
 #
 #       Handle the --with-configdir option
