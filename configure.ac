@@ -32,12 +32,33 @@ fi
 
 # canonicalize slashes.
 HACKDIR=`echo "${HACKDIR}" | sed 's@/$@@;s@//*@/@g'`
-
-# Expand HACKDIR as HACKDIR_FULL
-HACKDIR_FULL=`eval eval eval eval eval eval eval eval eval echo $HACKDIR`
-
 AC_SUBST(HACKDIR)
-AC_SUBST(HACKDIR_FULL)
+
+###############################################################################
+#
+#       Handle the --with-desktopdir option
+#
+###############################################################################
+
+have_desktopdir=yes
+with_desktopdir_req=unspecified
+AC_ARG_WITH(desktopdir,
+[  --with-desktopdir=DIR   Where to install the hundreds of demo executables.
+                          Default: PREFIX/share/applications/screensavers/],
+  [with_desktopdir="$withval"; with_desktopdir_req="$withval"],[with_desktopdir=yes])
+
+if test x"$with_desktopdir" = xyes; then
+  DESKTOPDIR='${prefix}/share/applications/screensavers'
+elif test x"$with_desktopdir" = xno; then
+  echo "error: must be yes, or a pathname: --with-desktopdir=$with_desktopdir"
+  exit 1
+else
+  DESKTOPDIR=$with_desktopdir
+fi
+
+# canonicalize slashes.
+DESKTOPDIR=`echo "${DESKTOPDIR}" | sed 's@/$@@;s@//*@/@g'`
+AC_SUBST(DESKTOPDIR)
 
 ###############################################################################
 #
@@ -72,6 +93,7 @@ else
   fi
 fi
 
+AC_SUBST(HACK_CONF_DIR)
 
 
 
