@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Unicode
-Exec=/usr/lib/xscreensaver/unicode -root
-TryExec=/usr/lib/xscreensaver/unicode
+Exec=@hackexecdir@/unicode -root
+TryExec=@hackexecdir@/unicode
 Comment=Repeatedly randomly picks an unicode character and displays it in a very large font size together with its unicode code point and the character name. Written by Joachim Breitner; 2009.
 StartupNotify=false
 Terminal=false
