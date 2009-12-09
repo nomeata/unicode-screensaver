@@ -46,3 +46,5 @@ dist_hackconf_DATA = unicode.xml
 EXTRA_DIST = unicode.desktop.in
 
 CLEANFILES = unicode.desktop
+
+man_MANS = unicode.1
