@@ -23,6 +23,8 @@ are required:
 
 You can compile and install the screensaver as usual by running
  ./configure && make && make install
+See ./configure --help for options regarding the installation directories of
+the screensaver itself, xscreensaver config files, the .desktop files etc.
 
 To make sure that xscreensaver knows about your screen hack, please read
 the man pages for xscreensaver and xscreensaver-demo.
