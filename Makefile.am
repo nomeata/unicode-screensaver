@@ -40,12 +40,12 @@ nodist_desktop_DATA = unicode.desktop
 unicode.desktop: unicode.desktop.in
 	sed -e 's,[@]hackexecdir[@],$(hackexecdir),g' < $(srcdir)/unicode.desktop.in > unicode.desktop
 
-man_MANS = unicode.1
-unicode.1: unicode.1.in
-	sed -e 's,[@]version[@],@PACKAGE_VERSION@,g' < $(srcdir)/unicode.1.in > unicode.1
+man_MANS = unicode.6x
+unicode.6x: unicode.6x.in
+	sed -e 's,[@]version[@],@PACKAGE_VERSION@,g' < $(srcdir)/unicode.6x.in > unicode.6x
 
 dist_hackconf_DATA = unicode.xml
 
-EXTRA_DIST = unicode.desktop.in unicode.1.in
-CLEANFILES = unicode.desktop unicode.1
+EXTRA_DIST = unicode.desktop.in unicode.6x.in
+CLEANFILES = unicode.desktop unicode.6x
 
