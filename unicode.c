@@ -33,12 +33,12 @@ static void *
 unicode_init (Display *dpy, Window window)
 {
 	struct unicode_state *state = malloc(sizeof(struct unicode_state));
-	state->blank = True;
-
 	Colormap cmap;
 	XWindowAttributes xgwa;
-	XGetWindowAttributes (dpy, window, &xgwa);
 	int i;
+	
+	XGetWindowAttributes (dpy, window, &xgwa);
+	state->blank = True;
 
 	cmap = xgwa.colormap;
 
@@ -59,7 +59,7 @@ unicode_init (Display *dpy, Window window)
 		);
 	for (i = 0; i < NUM_FONTS; i++) {
 		state->font_count[i] = FcCharSetCount(state->fonts[i]->charset);
-		// printf("Font count: %d\n",state->font_count[i]);
+		/* printf("Font count: %d\n",state->font_count[i]); */
 	}
 
 	state->draw = XftDrawCreate(dpy, window, xgwa.visual, cmap); 
@@ -70,7 +70,7 @@ unicode_init (Display *dpy, Window window)
 
 /* does a binary search on unicode_names */
 /* (From gucharmap code) */
-static inline const char *
+static const char *
 get_unicode_data_name (FcChar32 uc)
 {
 	unsigned long min = 0;
@@ -91,12 +91,12 @@ get_unicode_data_name (FcChar32 uc)
 			return unicode_name_get_name(&unicode_names[mid]);
 	}
 
-	return "somethings wrong";
+	return "something is wrong";
 }
 
 
 static unsigned long
-unicode_draw (Display *dpy, Window win, struct unicode_state *state) {
+unicode_draw (Display *dpy, Window win, void *void_state) {
 	XGlyphInfo	extents;
 	FcChar32	ucs4;
 	FcChar32	map[FC_CHARSET_MAP_SIZE];
@@ -106,6 +106,7 @@ unicode_draw (Display *dpy, Window win, struct unicode_state *state) {
 	FcChar32	pick;	
 	char		name[100];
 	int		font;
+	struct unicode_state *state = (struct unicode_state *)void_state;
 
 	if (state->blank) {
 		XWindowAttributes xgwa;
@@ -142,7 +143,7 @@ unicode_draw (Display *dpy, Window win, struct unicode_state *state) {
 		XftDrawStringUtf8(state->draw,&state->font_color,state->tfont,
 			5,
 			xgwa.height - 5,
-			name,strlen(name)); 
+			(unsigned char *)name,strlen(name)); 
 		XSync (dpy, False);
 
 		state->blank = False;
@@ -172,10 +173,9 @@ unicode_free (Display *dpy, Window window, void *state) {
 }		
 
 
-
 char *progclass = "Unicode";
 
-static char *unicode_defaults [] = {
+static char const *unicode_defaults [] = {
   ".background: white",
   "*delay:	7",
   0

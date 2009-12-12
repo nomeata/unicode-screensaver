@@ -38628,7 +38628,7 @@ unicode_names[] =
   {0x10FFFD, 445}
 };
 
-static inline const char * unicode_name_get_name(const UnicodeName *entry)
+static const char * unicode_name_get_name(const UnicodeName *entry)
 {
   unsigned int offset = entry->name_offset;
   return unicode_names_strings + offset;
