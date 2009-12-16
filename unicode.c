@@ -27,6 +27,7 @@ struct unicode_state {
 	FcChar32	font_count[NUM_FONTS];
 	XftDraw*	draw;
 	XftColor	font_color;
+	XColor		bg_color;
 };
 
 static void *
@@ -63,7 +64,22 @@ unicode_init (Display *dpy, Window window)
 	}
 
 	state->draw = XftDrawCreate(dpy, window, xgwa.visual, cmap); 
-	XftColorAllocName(dpy, xgwa.visual ,cmap,"black",&state->font_color);
+	state->bg_color.pixel = get_pixel_resource(dpy, cmap, "background", "Background");
+	XQueryColor(dpy, cmap, &state->bg_color);
+
+	XColor color;
+	color.pixel = get_pixel_resource(dpy, cmap, "foreground", "Foreground");
+	XQueryColor(dpy, cmap, &color);
+
+	XRenderColor font_color;
+	font_color.red = color.red;
+	font_color.green = color.green;
+	font_color.blue = color.blue;
+	font_color.alpha = 0xFFFF;
+
+	XftColorAllocValue(dpy, xgwa.visual, cmap, &font_color, &state->font_color);
+	XSetWindowBackground(dpy, window, state->bg_color.pixel);
+	XClearWindow (dpy, window);
 
 	return state;
 }
@@ -176,7 +192,8 @@ unicode_free (Display *dpy, Window window, void *state) {
 char *progclass = "Unicode";
 
 static char *unicode_defaults [] = {
-  ".background: white",
+  ".background: black",
+  ".foreground: white",
   "*delay:	7",
   0
 };
