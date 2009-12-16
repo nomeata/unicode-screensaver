@@ -4,6 +4,89 @@
 
   <command arg="-root"/>
 
+  <hgroup>
+    <vgroup>
+      <!-- There seems to be no way label a select field (_label doesn't
+           work), so we're kludging around that by prefixing every option
+           with backround color: -->
+      <!-- This is a selection of colors from the X11 colorset (see
+           /etc/X11/rgb.txt and/or
+           http://en.wikipedia.org/wiki/X11_color_names. The xscreensaver
+           config GUI doesn't deal well with multiple-word color names. It
+           tends to break quoting and stick in \ continuation characters,
+           which doesn't work. So, we've omitted multi-word colors and many
+           colors which are very similar. Any X11 color can be set from the
+           config file using the -background and -foreground. Custom colors
+           can also be set using the -foreground rgb:0xnn/0xnn/0xnn format.
+           -->
+      <select id="Background color" default="black">
+        <option id="black"     _label="background color: black"     arg-set="-background black"/>
+        <option id="white"     _label="background color: white"     arg-set="-background white"/>
+        <option id="aquamarine" _label="background color: aquamarine" arg-set="-background aquamarine" />
+        <option id="beige" _label="background color: beige" arg-set="-background beige" />
+        <option id="blue" _label="background color: blue" arg-set="-background blue" />
+        <option id="brown" _label="background color: brown" arg-set="-background brown" />
+        <option id="burlywood" _label="background color: burlywood" arg-set="-background burlywood" />
+        <option id="cyan" _label="background color: cyan" arg-set="-background cyan" />
+        <option id="firebrick" _label="background color: firebrick" arg-set="-background firebrick" />
+        <option id="gainsboro" _label="background color: gainsboro" arg-set="-background gainsboro" />
+        <option id="gold" _label="background color: gold" arg-set="-background gold" />
+        <option id="gray" _label="background color: gray" arg-set="-background gray" />
+        <option id="green" _label="background color: green" arg-set="-background green" />
+        <option id="khaki" _label="background color: khaki" arg-set="-background khaki" />
+        <option id="moccasin" _label="background color: moccasin" arg-set="-background moccasin" />
+        <option id="navy" _label="background color: navy" arg-set="-background navy" />
+        <option id="orange" _label="background color: orange" arg-set="-background orange" />
+        <option id="orchid" _label="background color: orchid" arg-set="-background orchid" />
+        <option id="pink" _label="background color: pink" arg-set="-background pink" />
+        <option id="plum" _label="background color: plum" arg-set="-background plum" />
+        <option id="red" _label="background color: red" arg-set="-background red" />
+        <option id="salmon" _label="background color: salmon" arg-set="-background salmon" />
+        <option id="sienna" _label="background color: sienna" arg-set="-background sienna" />
+        <option id="tan" _label="background color: tan" arg-set="-background tan" />
+        <option id="thistle" _label="background color: thistle" arg-set="-background thistle" />
+        <option id="turquoise" _label="background color: turquoise" arg-set="-background turquoise" />
+        <option id="violet" _label="background color: violet" arg-set="-background violet" />
+        <option id="wheat" _label="background color: wheat" arg-set="-background wheat" />
+        <option id="yellow" _label="background color: yellow" arg-set="-background yellow" />
+      </select>
+    </vgroup>
+    <vgroup>
+      <select id="Foreground color" default="white">
+        <option id="aquamarine" _label="font color: aquamarine" arg-set="-foreground aquamarine" />
+        <option id="beige" _label="font color: beige" arg-set="-foreground beige" />
+        <option id="blue" _label="font color: blue" arg-set="-foreground blue" />
+        <option id="brown" _label="font color: brown" arg-set="-foreground brown" />
+        <option id="burlywood" _label="font color: burlywood" arg-set="-foreground burlywood" />
+        <option id="cyan" _label="font color: cyan" arg-set="-foreground cyan" />
+        <option id="firebrick" _label="font color: firebrick" arg-set="-foreground firebrick" />
+        <option id="gainsboro" _label="font color: gainsboro" arg-set="-foreground gainsboro" />
+        <option id="gold" _label="font color: gold" arg-set="-foreground gold" />
+        <option id="gray" _label="font color: gray" arg-set="-foreground gray" />
+        <option id="green" _label="font color: green" arg-set="-foreground green" />
+        <option id="khaki" _label="font color: khaki" arg-set="-foreground khaki" />
+        <option id="moccasin" _label="font color: moccasin" arg-set="-foreground moccasin" />
+        <option id="navy" _label="font color: navy" arg-set="-foreground navy" />
+        <option id="orange" _label="font color: orange" arg-set="-foreground orange" />
+        <option id="orchid" _label="font color: orchid" arg-set="-foreground orchid" />
+        <option id="pink" _label="font color: pink" arg-set="-foreground pink" />
+        <option id="plum" _label="font color: plum" arg-set="-foreground plum" />
+        <option id="red" _label="font color: red" arg-set="-foreground red" />
+        <option id="salmon" _label="font color: salmon" arg-set="-foreground salmon" />
+        <option id="sienna" _label="font color: sienna" arg-set="-foreground sienna" />
+        <option id="tan" _label="font color: tan" arg-set="-foreground tan" />
+        <option id="thistle" _label="font color: thistle" arg-set="-foreground thistle" />
+        <option id="turquoise" _label="font color: turquoise" arg-set="-foreground turquoise" />
+        <option id="violet" _label="font color: violet" arg-set="-foreground violet" />
+        <option id="wheat" _label="font color: wheat" arg-set="-foreground wheat" />
+        <option id="yellow" _label="font color: yellow" arg-set="-foreground yellow" />
+      </select>
+    </vgroup>
+  </hgroup>
+  <hgroup>
+    <boolean id="showfps" _label="Show frame rate" arg-set="-fps"/>
+  </hgroup>
+
   <_description>
 Repeatedly randomly picks an unicode character and displays it in a very large font size together with its unicode code point and the character name.
 
