@@ -200,6 +200,8 @@ static char const *unicode_defaults [] = {
 
 static XrmOptionDescRec unicode_options [] = {
   { "-delay",           ".delay",               XrmoptionSepArg, 0 },
+  { "-foreground",      ".foreground",          XrmoptionSepArg, 0 },
+  { "-background",      ".background",          XrmoptionSepArg, 0 },
   { 0, 0, 0, 0 }
 };
 
