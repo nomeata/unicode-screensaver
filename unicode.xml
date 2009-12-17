@@ -5,7 +5,6 @@
   <command arg="-root"/>
 
   <hgroup>
-    <vgroup>
       <!-- There seems to be no way label a select field (_label doesn't
            work), so we're kludging around that by prefixing every option
            with backround color: -->
@@ -19,69 +18,68 @@
            config file using the -background and -foreground. Custom colors
            can also be set using the -foreground rgb:0xnn/0xnn/0xnn format.
            -->
-      <select id="Background color" default="black">
-        <option id="black"     _label="background color: black"     arg-set="-background black"/>
-        <option id="white"     _label="background color: white"     arg-set="-background white"/>
-        <option id="aquamarine" _label="background color: aquamarine" arg-set="-background aquamarine" />
-        <option id="beige" _label="background color: beige" arg-set="-background beige" />
-        <option id="blue" _label="background color: blue" arg-set="-background blue" />
-        <option id="brown" _label="background color: brown" arg-set="-background brown" />
-        <option id="burlywood" _label="background color: burlywood" arg-set="-background burlywood" />
-        <option id="cyan" _label="background color: cyan" arg-set="-background cyan" />
-        <option id="firebrick" _label="background color: firebrick" arg-set="-background firebrick" />
-        <option id="gainsboro" _label="background color: gainsboro" arg-set="-background gainsboro" />
-        <option id="gold" _label="background color: gold" arg-set="-background gold" />
-        <option id="gray" _label="background color: gray" arg-set="-background gray" />
-        <option id="green" _label="background color: green" arg-set="-background green" />
-        <option id="khaki" _label="background color: khaki" arg-set="-background khaki" />
-        <option id="moccasin" _label="background color: moccasin" arg-set="-background moccasin" />
-        <option id="navy" _label="background color: navy" arg-set="-background navy" />
-        <option id="orange" _label="background color: orange" arg-set="-background orange" />
-        <option id="orchid" _label="background color: orchid" arg-set="-background orchid" />
-        <option id="pink" _label="background color: pink" arg-set="-background pink" />
-        <option id="plum" _label="background color: plum" arg-set="-background plum" />
-        <option id="red" _label="background color: red" arg-set="-background red" />
-        <option id="salmon" _label="background color: salmon" arg-set="-background salmon" />
-        <option id="sienna" _label="background color: sienna" arg-set="-background sienna" />
-        <option id="tan" _label="background color: tan" arg-set="-background tan" />
-        <option id="thistle" _label="background color: thistle" arg-set="-background thistle" />
-        <option id="turquoise" _label="background color: turquoise" arg-set="-background turquoise" />
-        <option id="violet" _label="background color: violet" arg-set="-background violet" />
-        <option id="wheat" _label="background color: wheat" arg-set="-background wheat" />
-        <option id="yellow" _label="background color: yellow" arg-set="-background yellow" />
+      <select id="foreground_color">
+        <option id="foreground_black"     _label="font color: black"/>
+        <option id="foreground_white"     _label="font color: white"     arg-set="-foreground white"/>
+        <option id="foreground_aquamarine" _label="font color: aquamarine" arg-set="-foreground aquamarine" />
+        <option id="foreground_beige" _label="font color: beige" arg-set="-foreground beige" />
+        <option id="foreground_blue" _label="font color: blue" arg-set="-foreground blue" />
+        <option id="foreground_brown" _label="font color: brown" arg-set="-foreground brown" />
+        <option id="foreground_burlywood" _label="font color: burlywood" arg-set="-foreground burlywood" />
+        <option id="foreground_cyan" _label="font color: cyan" arg-set="-foreground cyan" />
+        <option id="foreground_firebrick" _label="font color: firebrick" arg-set="-foreground firebrick" />
+        <option id="foreground_gainsboro" _label="font color: gainsboro" arg-set="-foreground gainsboro" />
+        <option id="foreground_gold" _label="font color: gold" arg-set="-foreground gold" />
+        <option id="foreground_gray" _label="font color: gray" arg-set="-foreground gray" />
+        <option id="foreground_green" _label="font color: green" arg-set="-foreground green" />
+        <option id="foreground_khaki" _label="font color: khaki" arg-set="-foreground khaki" />
+        <option id="foreground_moccasin" _label="font color: moccasin" arg-set="-foreground moccasin" />
+        <option id="foreground_navy" _label="font color: navy" arg-set="-foreground navy" />
+        <option id="foreground_orange" _label="font color: orange" arg-set="-foreground orange" />
+        <option id="foreground_orchid" _label="font color: orchid" arg-set="-foreground orchid" />
+        <option id="foreground_pink" _label="font color: pink" arg-set="-foreground pink" />
+        <option id="foreground_plum" _label="font color: plum" arg-set="-foreground plum" />
+        <option id="foreground_red" _label="font color: red" arg-set="-foreground red" />
+        <option id="foreground_salmon" _label="font color: salmon" arg-set="-foreground salmon" />
+        <option id="foreground_sienna" _label="font color: sienna" arg-set="-foreground sienna" />
+        <option id="foreground_tan" _label="font color: tan" arg-set="-foreground tan" />
+        <option id="foreground_thistle" _label="font color: thistle" arg-set="-foreground thistle" />
+        <option id="foreground_turquoise" _label="font color: turquoise" arg-set="-foreground turquoise" />
+        <option id="foreground_violet" _label="font color: violet" arg-set="-foreground violet" />
+        <option id="foreground_wheat" _label="font color: wheat" arg-set="-foreground wheat" />
+        <option id="foreground_yellow" _label="font color: yellow" arg-set="-foreground yellow" />
       </select>
-    </vgroup>
-    <vgroup>
-      <select id="Foreground color" default="white">
-        <option id="aquamarine" _label="font color: aquamarine" arg-set="-foreground aquamarine" />
-        <option id="beige" _label="font color: beige" arg-set="-foreground beige" />
-        <option id="blue" _label="font color: blue" arg-set="-foreground blue" />
-        <option id="brown" _label="font color: brown" arg-set="-foreground brown" />
-        <option id="burlywood" _label="font color: burlywood" arg-set="-foreground burlywood" />
-        <option id="cyan" _label="font color: cyan" arg-set="-foreground cyan" />
-        <option id="firebrick" _label="font color: firebrick" arg-set="-foreground firebrick" />
-        <option id="gainsboro" _label="font color: gainsboro" arg-set="-foreground gainsboro" />
-        <option id="gold" _label="font color: gold" arg-set="-foreground gold" />
-        <option id="gray" _label="font color: gray" arg-set="-foreground gray" />
-        <option id="green" _label="font color: green" arg-set="-foreground green" />
-        <option id="khaki" _label="font color: khaki" arg-set="-foreground khaki" />
-        <option id="moccasin" _label="font color: moccasin" arg-set="-foreground moccasin" />
-        <option id="navy" _label="font color: navy" arg-set="-foreground navy" />
-        <option id="orange" _label="font color: orange" arg-set="-foreground orange" />
-        <option id="orchid" _label="font color: orchid" arg-set="-foreground orchid" />
-        <option id="pink" _label="font color: pink" arg-set="-foreground pink" />
-        <option id="plum" _label="font color: plum" arg-set="-foreground plum" />
-        <option id="red" _label="font color: red" arg-set="-foreground red" />
-        <option id="salmon" _label="font color: salmon" arg-set="-foreground salmon" />
-        <option id="sienna" _label="font color: sienna" arg-set="-foreground sienna" />
-        <option id="tan" _label="font color: tan" arg-set="-foreground tan" />
-        <option id="thistle" _label="font color: thistle" arg-set="-foreground thistle" />
-        <option id="turquoise" _label="font color: turquoise" arg-set="-foreground turquoise" />
-        <option id="violet" _label="font color: violet" arg-set="-foreground violet" />
-        <option id="wheat" _label="font color: wheat" arg-set="-foreground wheat" />
-        <option id="yellow" _label="font color: yellow" arg-set="-foreground yellow" />
+      <select id="background_color">
+        <option id="background_white"     _label="background color: white"/>
+        <option id="background_black"     _label="background color: black"     arg-set="-background black"/>
+        <option id="background_aquamarine" _label="background color: aquamarine" arg-set="-background aquamarine" />
+        <option id="background_beige" _label="background color: beige" arg-set="-background beige" />
+        <option id="background_blue" _label="background color: blue" arg-set="-background blue" />
+        <option id="background_brown" _label="background color: brown" arg-set="-background brown" />
+        <option id="background_burlywood" _label="background color: burlywood" arg-set="-background burlywood" />
+        <option id="background_cyan" _label="background color: cyan" arg-set="-background cyan" />
+        <option id="background_firebrick" _label="background color: firebrick" arg-set="-background firebrick" />
+        <option id="background_gainsboro" _label="background color: gainsboro" arg-set="-background gainsboro" />
+        <option id="background_gold" _label="background color: gold" arg-set="-background gold" />
+        <option id="background_gray" _label="background color: gray" arg-set="-background gray" />
+        <option id="background_green" _label="background color: green" arg-set="-background green" />
+        <option id="background_khaki" _label="background color: khaki" arg-set="-background khaki" />
+        <option id="background_moccasin" _label="background color: moccasin" arg-set="-background moccasin" />
+        <option id="background_navy" _label="background color: navy" arg-set="-background navy" />
+        <option id="background_orange" _label="background color: orange" arg-set="-background orange" />
+        <option id="background_orchid" _label="background color: orchid" arg-set="-background orchid" />
+        <option id="background_pink" _label="background color: pink" arg-set="-background pink" />
+        <option id="background_plum" _label="background color: plum" arg-set="-background plum" />
+        <option id="background_red" _label="background color: red" arg-set="-background red" />
+        <option id="background_salmon" _label="background color: salmon" arg-set="-background salmon" />
+        <option id="background_sienna" _label="background color: sienna" arg-set="-background sienna" />
+        <option id="background_tan" _label="background color: tan" arg-set="-background tan" />
+        <option id="background_thistle" _label="background color: thistle" arg-set="-background thistle" />
+        <option id="background_turquoise" _label="background color: turquoise" arg-set="-background turquoise" />
+        <option id="background_violet" _label="background color: violet" arg-set="-background violet" />
+        <option id="background_wheat" _label="background color: wheat" arg-set="-background wheat" />
+        <option id="background_yellow" _label="background color: yellow" arg-set="-background yellow" />
       </select>
-    </vgroup>
   </hgroup>
   <hgroup>
     <boolean id="showfps" _label="Show frame rate" arg-set="-fps"/>
