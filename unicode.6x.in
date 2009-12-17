@@ -8,6 +8,8 @@ unicode - displays unicode characters
 [\-window]
 [\-root]
 [\-fps]
+[\-foreground \fIcolor\fP]
+[\-background \fIcolor\fP]
 .SH DESCRIPTION
 unicode-screensaver is a simple screensaver application that repeatedly
 randomly picks an unicode character and displays it in a very large font
@@ -26,6 +28,13 @@ Draw on the root window.
 .TP 8
 .B \-fps
 Display the current frame rate and CPU load.
+.TP 8
+.B \-background
+Set the background color (e.g. black, white, green, red). The default is
+white.
+.TP 8
+.B \-foreground
+Set the font color (e.g. black, white, green, red). The default is black.
 .SH ENVIRONMENT
 .PP
 .TP 8
