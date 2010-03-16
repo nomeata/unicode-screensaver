@@ -60,7 +60,7 @@ unicode_init (Display *dpy, Window window)
 		);
 	for (i = 0; i < NUM_FONTS; i++) {
 		state->font_count[i] = FcCharSetCount(state->fonts[i]->charset);
-		/* printf("Font count: %d\n",state->font_count[i]); */
+		// printf("Font count: %d\n",state->font_count[i]);
 	}
 
 	state->draw = XftDrawCreate(dpy, window, xgwa.visual, cmap); 
@@ -147,6 +147,7 @@ unicode_draw (Display *dpy, Window win, void *void_state) {
 		}
 		
 
+		// printf("Picked font %d, pickn %d, U+%04X\n", font, pickn, pick);
 		sprintf(name,"U+%04X: ",pick);
 		strcat(name, get_unicode_data_name(pick));
 
