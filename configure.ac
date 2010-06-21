@@ -4,7 +4,7 @@
 AC_INIT(unicode-screensaver, 0.3, mail@joachim-breitner.de)
 AC_CONFIG_SRCDIR([unicode.c])
 AC_CONFIG_HEADER([config.h])
-AC_CONFIG_MACRO_DIR([m4])
+# AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE
 
 ###############################################################################

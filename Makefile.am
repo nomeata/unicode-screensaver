@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS = foreign 
-ACLOCAL_AMFLAGS = -I m4
+# ACLOCAL_AMFLAGS = -I m4
 
 
 AM_CPPFLAGS  = -I$(srcdir)/hacks -I$(srcdir)/utils @XFT_CFLAGS@ @X11_CFLAGS@ @FC_CFLAGS@ @XMU_CFLAGS@ @XT_CFLAGS@
