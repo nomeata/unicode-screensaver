@@ -1,6 +1,6 @@
 unicode-screensaver
 
-© 2006,2009 Joachim Breitner <mail@joachim-breitner.de>
+© 2006,2009,2010 Joachim Breitner <mail@joachim-breitner.de>
 
 unicode-screensaver is a simple screensaver application that repeatedly
 randomly picks an unicode character and displays it in a very large font
@@ -42,7 +42,7 @@ implied warranty.
 
 The files in the directories hacks/ and utils/ are taken from the xscreensaver
 distribution and covered by the following copyrights:
-	Copyright (c) 1992-2008 Jamie Zawinski <jwz@jwz.org>
+	Copyright (c) 1992-2010 Jamie Zawinski <jwz@jwz.org>
 utils/vroot.h is covered by:
 	Copyright 1991 by Andreas Stolcke
 	Copyright 1990 by Solbourne Computer Inc.
