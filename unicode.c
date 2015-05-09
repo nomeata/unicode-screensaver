@@ -24,7 +24,6 @@ struct unicode_state {
 
         XftFont*	fonts[NUM_FONTS];
 	XftFont*	tfont;
-	FcChar32	font_count[NUM_FONTS];
 	XftDraw*	draw;
 	XftColor	font_color;
 	XColor		bg_color;
@@ -36,42 +35,37 @@ unicode_init (Display *dpy, Window window)
 	struct unicode_state *state = malloc(sizeof(struct unicode_state));
 	Colormap cmap;
 	XWindowAttributes xgwa;
-	int i;
-	
+	XColor color;
+	XRenderColor font_color;
+
 	XGetWindowAttributes (dpy, window, &xgwa);
 	state->blank = True;
 
 	cmap = xgwa.colormap;
 
-	state->fonts[0] = XftFontOpen(dpy, 0, 
-		XFT_FAMILY,  XftTypeString, "DejaVu Sans",
+	state->fonts[0] = XftFontOpen(dpy, 0,
+		XFT_FAMILY,  XftTypeString, "Open Symbol",
 		XFT_PIXEL_SIZE, XftTypeInteger, xgwa.height-100,
 		NULL
 		);
-	state->fonts[1] = XftFontOpen(dpy, 0, 
+	state->fonts[1] = XftFontOpen(dpy, 0,
 		XFT_FAMILY,  XftTypeString, "FreeSans",
 		XFT_PIXEL_SIZE, XftTypeInteger, xgwa.height-100,
 		NULL
 		);
-	state->tfont = XftFontOpen(dpy, 0, 
+	state->tfont = XftFontOpen(dpy, 0,
 		XFT_FAMILY,  XftTypeString, "FreeSans",
 		XFT_PIXEL_SIZE, XftTypeInteger, 40,
 		NULL
 		);
-	for (i = 0; i < NUM_FONTS; i++) {
-		state->font_count[i] = FcCharSetCount(state->fonts[i]->charset);
-		// printf("Font count: %d\n",state->font_count[i]);
-	}
 
 	state->draw = XftDrawCreate(dpy, window, xgwa.visual, cmap); 
 	state->bg_color.pixel = get_pixel_resource(dpy, cmap, "background", "Background");
 	XQueryColor(dpy, cmap, &state->bg_color);
 
-	XColor color;
 	color.pixel = get_pixel_resource(dpy, cmap, "foreground", "Foreground");
 	XQueryColor(dpy, cmap, &color);
 
-	XRenderColor font_color;
 	font_color.red = color.red;
 	font_color.green = color.green;
 	font_color.blue = color.blue;
@@ -84,72 +78,39 @@ unicode_init (Display *dpy, Window window)
 	return state;
 }
 
-/* does a binary search on unicode_names */
-/* (From gucharmap code) */
-static const char *
-get_unicode_data_name (FcChar32 uc)
-{
-	unsigned long min = 0;
-	unsigned long mid;
-	unsigned long max = (sizeof(unicode_names)/sizeof(unicode_names[0])) - 1;
-
-	if (uc < unicode_names[0].index || uc > unicode_names[max].index)
-		return "Out of range";
-
-	while (max >= min)
-	{
-		mid = (min + max) / 2;
-		if (uc > unicode_names[mid].index)
-			min = mid + 1;
-		else if (uc < unicode_names[mid].index)
-			max = mid - 1;
-		else
-			return unicode_name_get_name(&unicode_names[mid]);
-	}
-
-	return "something is wrong";
-}
-
-
 static unsigned long
 unicode_draw (Display *dpy, Window win, void *void_state) {
 	XGlyphInfo	extents;
-	FcChar32	ucs4;
-	FcChar32	map[FC_CHARSET_MAP_SIZE];
-	FcChar32	next;
-	FcChar32	pickn;
-	FcChar32	pickc;
-	FcChar32	pick;	
+	FcChar32	pick;
 	char		name[100];
 	int		font;
+	int             i;
 	struct unicode_state *state = (struct unicode_state *)void_state;
+	unsigned long unicode_names_length
+		= (sizeof(unicode_names)/sizeof(unicode_names[0]));
+	const UnicodeName* nameEntry;
 
 	if (state->blank) {
 		XWindowAttributes xgwa;
 		XGetWindowAttributes (dpy, win, &xgwa);
 
-		font = random() % NUM_FONTS;
+		/* Find a unicode character that is contained in one of the fonts
+		   We try 100 random points before sleeping, to avoid an endless cycle */
+		for (i = 0; i < 100; i++) {
+			nameEntry = &unicode_names[random() % unicode_names_length];
+			pick = nameEntry->index;
+			/* printf("Trying U+%04X\n", pick); */
 
-		pickn = random() % state->font_count[font];	
-
-		pickc = 0;
-		for (ucs4 = FcCharSetFirstPage (state->fonts[font]->charset, map, &next);
-		     ucs4 != FC_CHARSET_DONE;
-		     ucs4 = FcCharSetNextPage (state->fonts[font]->charset, map, &next))
-		{
-		    int	    i, j;
-		    for (i = 0; i < FC_CHARSET_MAP_SIZE; i++)
-			if (map[i])
-			    for (j = 0; j < 32; j++)
-				if (map[i] & (1 << j))
-				    if (pickc++ == pickn) 
-					pick = ucs4 + i * 32 + j;
+			for (font = 0; font < NUM_FONTS; font++) {
+				if (XftCharExists (dpy, state->fonts[font], pick)) break;
+			}
+			if (font < NUM_FONTS) break;
 		}
-		
+		if (i == 100) return (1000*1000);
 
-		// printf("Picked font %d, pickn %d, U+%04X\n", font, pickn, pick);
-		sprintf(name,"U+%04X: ",pick);
-		strcat(name, get_unicode_data_name(pick));
+		/* printf("Picked font %d, U+%04X\n", font, pick); */
+		sprintf(name,"U+%04X: ", pick);
+		strcat(name, unicode_name_get_name(nameEntry));
 
 		XftTextExtents32(dpy,state->fonts[font],&pick,1,&extents); 
 		XftDrawString32(state->draw,&state->font_color,state->fonts[font],
