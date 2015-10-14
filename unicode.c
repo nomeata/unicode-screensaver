@@ -125,7 +125,7 @@ unicode_draw (Display *dpy, Window win, void *void_state) {
 		XSync (dpy, False);
 
 		state->blank = False;
-		return (7*1000*1000);
+		return (get_seconds_resource(dpy, "delay", "Delay")*1000*1000);
 	} else {
 		XClearWindow (dpy, win);
 		XSync (dpy, False);
