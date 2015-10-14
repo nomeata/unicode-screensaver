@@ -8,6 +8,7 @@ unicode - displays unicode characters
 [\-window]
 [\-root]
 [\-fps]
+[\-delay \fIseconds\fP]
 [\-foreground \fIcolor\fP]
 [\-background \fIcolor\fP]
 .SH DESCRIPTION
@@ -28,6 +29,10 @@ Draw on the root window.
 .TP 8
 .B \-fps
 Display the current frame rate and CPU load.
+.TP 8
+.B \-delay
+Specify the delay in seconds before switching to a new character. Defaults to
+seven seconds.
 .TP 8
 .B \-background
 Set the background color (e.g. black, white, green, red). The default is
