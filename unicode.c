@@ -27,6 +27,7 @@ struct unicode_state {
 	XftDraw*	draw;
 	XftColor	font_color;
 	XColor		bg_color;
+	unsigned	delay;
 };
 
 static void *
@@ -66,6 +67,7 @@ unicode_init (Display *dpy, Window window)
 	color.pixel = get_pixel_resource(dpy, cmap, "foreground", "Foreground");
 	XQueryColor(dpy, cmap, &color);
 
+	state->delay = get_seconds_resource(dpy, "delay", "Delay")*1000*1000;
 	font_color.red = color.red;
 	font_color.green = color.green;
 	font_color.blue = color.blue;
@@ -125,7 +127,7 @@ unicode_draw (Display *dpy, Window win, void *void_state) {
 		XSync (dpy, False);
 
 		state->blank = False;
-		return (get_seconds_resource(dpy, "delay", "Delay")*1000*1000);
+		return (state->delay);
 	} else {
 		XClearWindow (dpy, win);
 		XSync (dpy, False);
