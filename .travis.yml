@@ -1,0 +1,14 @@
+language: c
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+    - libxmu-dev
+
+before_script:
+ - autoreconf --install --force
+
+script:
+ - ./configure && make
