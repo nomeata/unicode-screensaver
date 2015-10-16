@@ -16,7 +16,7 @@
 #include "unicode-names.h"
 #include "screenhack.h"
 
-#define NUM_FONTS 2
+#define NUM_FONTS 3
 
 
 struct unicode_state {
@@ -38,6 +38,7 @@ unicode_init (Display *dpy, Window window)
 	XWindowAttributes xgwa;
 	XColor color;
 	XRenderColor font_color;
+	char *extra;
 
 	XGetWindowAttributes (dpy, window, &xgwa);
 	state->blank = True;
@@ -54,6 +55,14 @@ unicode_init (Display *dpy, Window window)
 		XFT_PIXEL_SIZE, XftTypeInteger, xgwa.height-100,
 		NULL
 		);
+	extra = get_string_resource(dpy, "font", "Font");
+	state->fonts[2] = extra ?
+		XftFontOpen(dpy, 0,
+			    XFT_FAMILY,  XftTypeString, extra,
+			    XFT_PIXEL_SIZE, XftTypeInteger, xgwa.height-100,
+			    NULL
+		) : NULL;
+
 	state->tfont = XftFontOpen(dpy, 0,
 		XFT_FAMILY,  XftTypeString, "FreeSans",
 		XFT_PIXEL_SIZE, XftTypeInteger, 40,
@@ -104,7 +113,8 @@ unicode_draw (Display *dpy, Window win, void *void_state) {
 			/* printf("Trying U+%04X\n", pick); */
 
 			for (font = 0; font < NUM_FONTS; font++) {
-				if (XftCharExists (dpy, state->fonts[font], pick)) break;
+				if (state->fonts[font] &&
+				    XftCharExists (dpy, state->fonts[font], pick)) break;
 			}
 			if (font < NUM_FONTS) break;
 		}
@@ -164,6 +174,7 @@ static char const *unicode_defaults [] = {
 
 static XrmOptionDescRec unicode_options [] = {
   { "-delay",           ".delay",               XrmoptionSepArg, 0 },
+  { "-font",		".font",		XrmoptionSepArg, 0 },
   { "-foreground",      ".foreground",          XrmoptionSepArg, 0 },
   { "-background",      ".background",          XrmoptionSepArg, 0 },
   { 0, 0, 0, 0 }

@@ -9,6 +9,7 @@ unicode - displays unicode characters
 [\-root]
 [\-fps]
 [\-delay \fIseconds\fP]
+[\-font \fIfont\fP]
 [\-foreground \fIcolor\fP]
 [\-background \fIcolor\fP]
 .SH DESCRIPTION
@@ -33,6 +34,9 @@ Display the current frame rate and CPU load.
 .B \-delay
 Specify the delay in seconds before switching to a new character. Defaults to
 seven seconds.
+.TP 8
+.B \-font
+Try the given font in addition to the built-in fonts (Open Symbol, and FreeSans).
 .TP 8
 .B \-background
 Set the background color (e.g. black, white, green, red). The default is
