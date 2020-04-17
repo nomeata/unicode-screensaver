@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 
 #AC_PREREQ(2.60)
-AC_INIT(unicode-screensaver, 0.5.1, mail@joachim-breitner.de)
+AC_INIT(unicode-screensaver, 0.5.2, mail@joachim-breitner.de)
 AC_CONFIG_SRCDIR([unicode.c])
 AC_CONFIG_HEADER([config.h])
 # AC_CONFIG_MACRO_DIR([m4])
